@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
     lexer = Rouge::Lexers::Shell.new
     formatted_source = formatter.format(lexer.lex(source))
 
-    html = "<style>#{theme} html, body { background: #282a36 }</style> \n <pre class='highlight'>#{formatted_source}</pre>"
+    html = "<style>#{theme} html, body { background: #282a36; padding: 10px 10px 10px 10px; font-size: 20px }</style> \n <pre class='highlight'>#{formatted_source}</pre>"
 
     respond_to do |format|
       format.png do
