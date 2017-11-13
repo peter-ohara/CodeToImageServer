@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    source = "def printer(message):\n     print(message)\n     print(\"Done\")\n"
+    source = "def printer_foo(message):\n     print(message)\n     print(\"Done\")\n"
 
     theme = Rouge::Themes::MonokaiSublime.render(scope: '.highlight')
     formatter = Rouge::Formatters::HTML.new(theme)
@@ -22,6 +22,17 @@ class WelcomeController < ApplicationController
 
       format.html do
         render plain: html
+      end
+
+      format.json do
+        @kit = IMGKit.new(html)
+
+        file = Tempfile.new(["code_image_#{Time.current.to_s}", '.png'], 'tmp', :encoding => 'ascii-8bit')
+        file.write(@kit.to_png)
+        file.flush
+
+        results = Cloudinary::Uploader.upload(file.path)
+        render json: results
       end
     end
   end
