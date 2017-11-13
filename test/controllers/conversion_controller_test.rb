@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ConvertionControllerTest < ActionDispatch::IntegrationTest
+class ConversionControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
