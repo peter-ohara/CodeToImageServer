@@ -1,0 +1,6 @@
+<h1>Welcome#index</h1>
+
+<%= form_with url: "#{convert_path}.json", remote: false do |f| %>
+    <%= f.text_area :message %>
+    <%= f.submit %>
+<% end %>
