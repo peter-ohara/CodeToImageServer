@@ -40,22 +40,25 @@ class ConversionController < ApplicationController
         padding: 10px 10px 10px 10px;
         font-size: 20px;
       }
+      .highlight {
+        white-space: pre-wrap;
+      }
     </style>
-    <pre class='highlight'>#{formatted_message}</pre>"
+    <div class='highlight'>#{formatted_message}</pre>"
   end
 
   def render_png(html)
-    @kit = IMGKit.new(html)
+    @kit = get_image_kit(html)
     send_data(@kit.to_png, type: 'image/png', disposition: 'inline')
   end
 
   def render_jpg(html)
-    @kit = IMGKit.new(html)
+    @kit = get_image_kit(html)
     send_data(@kit.to_jpg, type: 'image/jpeg', disposition: 'inline')
   end
 
   def upload_to_cloudinary(html)
-    @kit = IMGKit.new(html)
+    @kit = get_image_kit(html)
 
     file = Tempfile.new(["code_image_#{Time.current.to_s.underscore}", '.png'],
                         'tmp', encoding: 'ascii-8bit')
@@ -63,5 +66,9 @@ class ConversionController < ApplicationController
     file.flush
 
     Cloudinary::Uploader.upload(file.path)
+  end
+
+  def get_image_kit(html)
+    IMGKit.new(html, width: 500)
   end
 end
