@@ -1,24 +1,12 @@
-# README
+Backend Server for Code2Image Bot on Facebook
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Code2Image is a messenger bot which highlights code sent to it and outputs it as a picture.
 
-Things you may want to cover:
+To use, you message the bot on messenger, enclosing your code between the three backticks (```), like so:
 
-* Ruby version
+```
+  print("Hello world")
+  
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+And the bot will send back your code as an image, highlighted for easy reading and debugging.
